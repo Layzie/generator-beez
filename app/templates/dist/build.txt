@@ -1,0 +1,6 @@
+
+beez-tab/index.js
+----------------
+beez-tab/view/index.js
+beez-tab/model/index.js
+beez-tab/index.js

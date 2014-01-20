@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/m/beez-tab/node_modules/mocha/mocha.css"/>
+  <script type="text/javascript" src="all.js"></script>
+  <style type="text/css">
+    * { -webkit-box-sizing:border-box; }
+    #nav { font-size: 12px; }
+    #__temp__ { font-size: 12px; }
+    #w { margin:0; padding:0; background-color:#fff; }
+    .box { width:50px; height:50px; margin:10px; background-color:#999; box-shadow:0 0 10px #333 inset; }
+    .box.hover { background-color:#ccc; }
+    .box.locked { background-color:#ff0000; }
+    .box.customHover { background-color:#ccc; }
+    .box.customLocked { background-color:#ff0000; }
+  </style>
+</head>
+
+<body>
+  <div id="spec"></div>
+  <div id="nav">
+    <ul>
+      <li><a data-name="index" onclick="spec.run('index')" href="#">beez-tab/index.js</a></li>
+    </ul>
+  </div>
+  <div id="mocha"></div>
+  <hr>
+
+  <div id="w"></div>
+</body>
+</html>
