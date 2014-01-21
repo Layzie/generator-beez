@@ -1,7 +1,7 @@
 /**
- * @name index.js<beez-tab/model>
- * @author Masaki Sueda <sueda_masaki@cyberagent.co.jp>
- * @fileOverview tab model
+ * @name index.js<<%= slugname %>/model>
+ * @author <%= props.authorName %> <<%= props.authorEmail %>>
+ * @fileOvermodel <%= slugname %> model
  */
 
 (function (global) {
@@ -9,61 +9,69 @@
         'use strict';
 
         var beez = require('beez');
-        var logger = beez.getLogger('beez.tab.model');
+        var logger  = beez.getLogger('<%= methodName %>.model');
 
-        require('beez.touch');
-
-        var TabModel = beez.Model.extend(
-            'beez.tab.model',
+        var Model = beez.Model.extend(
+            '<%= methodName %>.model',
             {
-                midx: 'tab',
-
-                defaults: {
+                midx: '<%= methodName %>',
+                /**
+                 * initalize
+                 * @params {String} options.prefix
+                 * @params {Function} options.template
+                 */
+                initialize : function initialize(options) {
+                    // super
+                    Collection.__super__.initialize.apply(this, arguments);
+                    // normalize
+                    options = options || {};
                     /**
-                     * id
-                     * @type {String}
+                     * cache options
+                     * @type {Object}
                      */
-                    id: 'none',
-                    /**
-                     * is selected
-                     * @type {Boolean}
-                     */
-                    selected: false,
-
-                    /**
-                     * is disable
-                     * @type {Boolean}
-                     */
-                    disable: false,
+                    this.options = options;
 
                     /**
-                     * label 
-                     * @type {String}
+                     * midx
+                     * {String}
                      */
-                    label: 'no text'
+                    this.midx = options.midx || this.midx;
                 }
             }
         );
 
-        var TabCollection = beez.Collection.extend(
-            'beez.tab.collection',
+        var Collection = beez.Collection.extend(
+            '<%= methodName %>.collection',
             {
-                midx: 'tabs',
+                midx: '<%= methodName %>s',
+                /**
+                 * initalize
+                 * @params {String} options.prefix
+                 * @params {Function} options.template
+                 */
+                initialize : function initialize(options) {
+                    // super
+                    Collection.__super__.initialize.apply(this, arguments);
+                    // normalize
+                    options = options || {};
+                    /**
+                     * cache options
+                     * @type {Object}
+                     */
+                    this.options = options;
 
-                update: function (model) {
-
-                    this.each(function (model) {
-                        model.set({selected: false}, {silent: true});
-                    });
-                    model.set({selected: true});
-
+                    /**
+                     * midx
+                     * {String}
+                     */
+                    this.midx = options.midx || this.midx;
                 }
             }
         );
 
         return {
-            Model: TabModel,
-            Collection: TabCollection
+            Model: Model,
+            Collection: Collection
         };
     });
 })(this);

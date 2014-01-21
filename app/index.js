@@ -1,8 +1,8 @@
+/* vim: set tabstop=2 shiftwidth=2 softtabstop=2 expandtab : */
 'use strict';
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
-
 
 var BeezGenerator = module.exports = function BeezGenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
@@ -23,39 +23,87 @@ BeezGenerator.prototype.askFor = function askFor() {
   console.log(this.yeoman);
 
   var prompts = [{
-      name: 'name',
-      message: 'Module Name',
-      default: path.basename(process.cwd())
-    }, {
-      name: 'description',
-      message: 'Description',
-      default: 'The best module ever.'
-    }, {
-      name: 'homepage',
-      message: 'Homepage'
-    }, {
-      name: 'license',
-      message: 'License',
-      default: 'MIT'
-    }, {
-      name: 'githubUsername',
-      message: 'GitHub username'
-    }, {
-      name: 'authorName',
-      message: 'Author\'s Name'
-    }, {
-      name: 'authorEmail',
-      message: 'Author\'s Email'
-    }, {
-      name: 'authorUrl',
-      message: 'Author\'s Homepage'
-    }];
+    name: 'name',
+    message: 'Module Name',
+    default: path.basename(process.cwd()),
+    validate: function (w) {
+      var done = this.async();
+
+      if (!/[a-z-]/.test(w)) {
+        done('You should put lowercase alphabet in module name.');
+        return;
+      }
+
+      done(true);
+    },
+    filter: function (w) {
+      var done = this.async();
+
+      if (!/beez-[a-z]/.test(w)) {
+        done('beez-' + w);
+        return;
+      }
+
+      done(w);
+    }
+  }, {
+    name: 'description',
+    message: 'Description',
+    default: 'The best module ever.'
+  }, {
+    name: 'homepage',
+    message: 'Homepage'
+  }, {
+    name: 'license',
+    message: 'License',
+    default: 'MIT'
+  }, {
+    name: 'githubUsername',
+    message: 'GitHub username'
+  }, {
+    name: 'authorName',
+    message: 'Author\'s Name',
+    validate: function (w) {
+      var done = this.async();
+
+      if (w.length === 0) {
+        done('You should put your name.');
+      }
+
+      done(true);
+    }
+  }, {
+    name: 'authorEmail',
+    message: 'Author\'s Email',
+    validate: function (w) {
+      var done = this.async();
+
+      if (w.length === 0) {
+        done('You should put your email.');
+      }
+
+      done(true);
+    }
+  }, {
+    name: 'authorUrl',
+    message: 'Author\'s Homepage'
+  }];
 
   this.prompt(prompts, function (props) {
     this.slugname = this._.slugify(props.name);
     this.safeSlugname = this.slugname.replace(
       /-([a-z])/g,
       function (g) { return g[1].toUpperCase(); }
+    );
+    this.methodName = this.slugname.replace(
+      /([a-z])-([a-z])/g,
+      function (w) { return w[0] + '.' + w[2]; }
+    );
+    this.versionName = this.slugname.replace(
+      /(beez)-([a-z]+)/g,
+      function (w, p1, p2, offset, s) {
+        return p1.toUpperCase() + '_' + p2.toUpperCase() + '_VERSION';
+      }
     );
 
     if (props.githubUsername) {
@@ -75,11 +123,6 @@ BeezGenerator.prototype.askFor = function askFor() {
 };
 
 BeezGenerator.prototype.app = function app() {
-  var ignores = [
-    '.git',
-    'LICENSE.md'
-  ];
-
   this.mkdir('deps');
   this.mkdir('vender');
   this.mkdir('spec');
@@ -91,15 +134,6 @@ BeezGenerator.prototype.app = function app() {
   this.template('s/project/index.js', 's/' + this.slugname + '/index.js');
   this.template('s/project/model/index.js', 's/' + this.slugname + '/model/index.js');
   this.template('s/project/view/index.js', 's/' + this.slugname + '/view/index.js');
-
-  // this.expandFiles('*', {
-  //   cwd: this.sourceRoot(),
-  //   dot: true
-  // }).forEach(function (el) {
-  //   if (ignores.indexOf(el) === -1) {
-  //     this.copy(el, el);
-  //   }
-  // }, this);
 };
 
 BeezGenerator.prototype.projectfiles = function projectfiles() {

@@ -1,36 +1,35 @@
 /**
- * @name index.js<beez-tab/s>
- * @author Masaki Sueda <sueda_masaki@cyberagent.co.jp>
- * @copyright (c) Cyberagent Inc.
- * @overview tab plug-in for Beez (browser)
- * @license MIT
+ * @name index.js<<%= slugname %>/s>
+ * @author <%= props.authorName %> <<%= props.authorEmail %>>
+ * @overview <%= props.description %>
+ * @license <%= props.license %>
  */
 
-var BEEZ_TAB_VERSION = '0.1.0';
+var <%= versionName %> = '0.0.0';
 
 if (typeof module !== 'undefined' && module.exports) { // node.js: main
-    exports.VERSION = BEEZ_TAB_VERSION;
+    exports.VERSION = <%= versionName %>;
 } else {
     (function (global) {
         define(function (require, exports, module) {
             'use strict';
 
             var beez    = require('beez');
-            var logger  = beez.getLogger('beez.tab');
+            var logger  = beez.getLogger('<%= methodName %>');
 
-            if (beez.tab) {
-                logger.warn('beez.tab is already loaded.');
-                return beez.tab;
+            if (<%= methodName %>) {
+                logger.warn('<%= methodName %> is already loaded.');
+                return <%= methodName %>;
             }
 
             // make it available
-            beez.tab = {
-                View: require('beez-tab/view/index'),
-                Model: require('beez-tab/model/index').Model,
-                Collection: require('beez-tab/model/index').Collection
+            <%= methodName %> = {
+                View: require('<%= slugname %>/view/index'),
+                Model: require('<%= slugname %>/model/index').Model,
+                Collection: require('<%= slugname %>/model/index').Collection
             };
 
-            return beez.tab;
+            return <%= methodName %>;
         });
     })(this);
 }
