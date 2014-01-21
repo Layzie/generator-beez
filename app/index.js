@@ -139,6 +139,9 @@ BeezGenerator.prototype.app = function app() {
 BeezGenerator.prototype.projectfiles = function projectfiles() {
   this.copy('jshintrc', '.jshintrc');
   this.copy('jshintignore', '.jshintignore');
+  if (this.props.license === 'MIT') {
+    this.copy('LICENSE');
+  }
   this.copy('Gruntfile.js');
   this.template('_package.json', 'package.json');
   this.template('setver');
