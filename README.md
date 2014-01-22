@@ -1,7 +1,6 @@
 # generator-beez [![Build Status](https://secure.travis-ci.org/Layzie/generator-beez.png?branch=master)](https://travis-ci.org/Layzie/generator-beez)
 
-A generator for [Yeoman](http://yeoman.io).
-
+A generator for beez using [Yeoman](http://yeoman.io).
 
 ## Getting Started
 
@@ -15,7 +14,7 @@ Basically, he wears a top hat, lives in your computer, and waits for you to tell
 
 Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
 
-```
+```sh
 $ npm install -g yo
 ```
 
@@ -25,15 +24,18 @@ Yeoman travels light. He didn't pack any generators when he moved in. You can th
 
 To install generator-beez from npm, run:
 
-```
+```sh
 $ npm install -g generator-beez
 ```
 
 Finally, initiate the generator:
 
-```
+```sh
 $ yo beez
 ```
+
+Module name has `beez-` prefix automatically.
+> ex: `foo`→`beez-foo`
 
 ### Getting To Know Yeoman
 
