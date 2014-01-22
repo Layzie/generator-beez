@@ -1,0 +1,3 @@
+[submodule "app/templates/deps/beez"]
+	path = app/templates/deps/beez
+	url = git@github.com:CyberAgent/beez.git
