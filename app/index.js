@@ -154,4 +154,5 @@ BeezGenerator.prototype.projectfiles = function projectfiles() {
   this.template('Gruntfile.js');
   this.template('_package.json', 'package.json');
   this.template('setver');
+  this.template('README.md');
 };

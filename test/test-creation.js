@@ -15,6 +15,8 @@ describe('beez generator', function () {
             this.app = helpers.createGenerator('beez:app', [
                 '../../app'
             ]);
+            this.app.options['skip-install'] = true;
+
             done();
         }.bind(this));
     });
@@ -23,13 +25,33 @@ describe('beez generator', function () {
         var expected = [
             // add files you expect to exist here.
             '.jshintrc',
-            '.editorconfig'
+            '.jshintignore',
+            'Gruntfile.js',
+            'package.json',
+            'setver',
+            'LICENSE',
+            'README.md',
+            's/beez-mymodule/index.js',
+            's/beez-mymodule/model/index.js',
+            's/beez-mymodule/view/index.js',
+            'deps/beez',
+            'deps/beez/s/beez/index.js',
+            'spec/index.js',
+            'spec/all.js',
+            'spec/all.html',
+            'spec/foundation/spec.js',
+            'spec/require-config.js'
         ];
 
         helpers.mockPrompt(this.app, {
-            'someOption': true
+            'name': 'beez-mymodule',
+            'description': 'awesome module',
+            'license': 'MIT',
+            'githubUsername': 'octocat',
+            'authorName': 'Octo Cat',
+            'authorEmail': 'octo@example.com'
         });
-        this.app.options['skip-install'] = true;
+
         this.app.run({}, function () {
             helpers.assertFiles(expected);
             done();
