@@ -29,6 +29,7 @@ BeezGenerator.prototype.askFor = function askFor() {
     validate: function (w) {
       var done = this.async();
 
+      // if no name then show message.
       if (!/[a-z-]/.test(w)) {
         done('You should put lowercase alphabet in module name.');
         return;
@@ -39,6 +40,7 @@ BeezGenerator.prototype.askFor = function askFor() {
     filter: function (w) {
       var done = this.async();
 
+      // add `beez-` there is no prefix
       if (!/beez-[a-z]/.test(w)) {
         done('beez-' + w);
         return;
@@ -66,12 +68,14 @@ BeezGenerator.prototype.askFor = function askFor() {
     validate: function (w) {
       var done = this.async();
 
+      // if no author name then show message.
       if (w.length === 0) {
         done('You should put your name.');
       }
 
       done(true);
     },
+    // use git username when set
     default: this.user.git.username
   }, {
     name: 'authorEmail',
@@ -79,12 +83,14 @@ BeezGenerator.prototype.askFor = function askFor() {
     validate: function (w) {
       var done = this.async();
 
+      // if no email then show message.
       if (w.length === 0) {
         done('You should put your email.');
       }
 
       done(true);
     },
+    // use git email when set
     default: this.user.git.email
   }, {
     name: 'authorUrl',
@@ -92,15 +98,18 @@ BeezGenerator.prototype.askFor = function askFor() {
   }];
 
   this.prompt(prompts, function (props) {
+    // slugify name
     this.slugname = this._.slugify(props.name);
     this.safeSlugname = this.slugname.replace(
       /-([a-z])/g,
       function (g) { return g[1].toUpperCase(); }
     );
+    // replace name for javascript's method
     this.methodName = this.slugname.replace(
       /([a-z])-([a-z])/g,
       function (w) { return w[0] + '.' + w[2]; }
     );
+    // replace name for varsion variable
     this.versionName = this.slugname.replace(
       /(beez)-([a-z]+)/g,
       function (w, p1, p2, offset, s) {
@@ -134,13 +143,8 @@ BeezGenerator.prototype.app = function app() {
   this.template('s/project/model/index.js', 's/' + this.slugname + '/model/index.js');
   this.template('s/project/view/index.js', 's/' + this.slugname + '/view/index.js');
 
-  this.bulkDirectory('deps', 'deps', function () {
-    console.log('beez directory has been copied.');
-  });
-
-  this.bulkDirectory('spec', 'spec', function () {
-    console.log('spec directory has been copied.');
-  });
+  this.bulkDirectory('deps', 'deps');
+  this.bulkDirectory('spec', 'spec');
 
   this.template('require-config.js', 'spec/require-config.js');
   this.template('spec-index.js', 'spec/index.js');
@@ -152,6 +156,7 @@ BeezGenerator.prototype.projectfiles = function projectfiles() {
   if (this.props.license === 'MIT') {
     this.copy('LICENSE');
   }
+
   this.template('Gruntfile.js');
   this.template('_package.json', 'package.json');
   this.template('setver');
