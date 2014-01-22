@@ -10,10 +10,7 @@
         "backbone"  : "../deps/beez/vendor/backbone",
         "underscore": "../deps/beez/vendor/underscore",
         "handlebars": "../deps/beez/vendor/handlebars.runtime",
-        "sasuke"    : "../deps/sasuke.js/release/sasuke",
-        "beez"      : "../deps/beez/release/beez",
-        "beez.touch" : "../deps/beez-touch/release/beez.touch",
-        "beez.tab" : "./beez-tab/index"
+        "beez"      : "../deps/beez/release/beez"
     },
 
     shim: {
