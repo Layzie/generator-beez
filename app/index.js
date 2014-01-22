@@ -137,9 +137,10 @@ BeezGenerator.prototype.app = function app() {
   this.bulkDirectory('deps', 'deps', function () {
     console.log('beez directory has been copied.');
   });
+
   this.bulkDirectory('spec', 'spec', function () {
     console.log('spec directory has been copied.');
-  }.bind(this));
+  });
 
   this.template('require-config.js', 'spec/require-config.js');
   this.template('spec-index.js', 'spec/index.js');
