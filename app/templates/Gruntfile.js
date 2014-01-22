@@ -1,7 +1,7 @@
 (function () {
 
     var beez = {
-        projectname: '<%= slugName %>'
+        projectname: '<%= slugname %>'
     };
 
     module.exports = function (grunt) {
@@ -35,7 +35,7 @@
                     files: [
                         {
                             src: ['dist/' + beez.projectname + '/index.js'],
-                            dest: 'release/<%= slugName %>.js'
+                            dest: 'release/<%= slugname %>.js'
                         }
                     ]
                 },
@@ -43,7 +43,7 @@
                     files: [
                         {
                             src: ['dist/' + beez.projectname + '/index.js'],
-                            dest: 'release/<%= slugName %>.min.js'
+                            dest: 'release/<%= slugname %>.min.js'
                         }
                     ]
                 }
@@ -74,7 +74,7 @@
                     stderr: true
                 },
                 spec_foundation: {
-                    command: 'beez-foundation -c spec/foundation/spec.js -a <%= slugName %>:' + beez.projectdir,
+                    command: 'beez-foundation -c spec/foundation/spec.js -a <%= slugname %>:' + beez.projectdir,
                     stdout: true,
                     stderr: true
                 }

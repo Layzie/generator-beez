@@ -71,7 +71,8 @@ BeezGenerator.prototype.askFor = function askFor() {
       }
 
       done(true);
-    }
+    },
+    default: this.user.git.username
   }, {
     name: 'authorEmail',
     message: 'Author\'s Email',
@@ -83,7 +84,8 @@ BeezGenerator.prototype.askFor = function askFor() {
       }
 
       done(true);
-    }
+    },
+    default: this.user.git.email
   }, {
     name: 'authorUrl',
     message: 'Author\'s Homepage'
@@ -133,8 +135,13 @@ BeezGenerator.prototype.app = function app() {
   this.template('s/project/view/index.js', 's/' + this.slugname + '/view/index.js');
 
   this.bulkDirectory('deps', 'deps', function () {
-    console.log('beez has been copied.');
+    console.log('beez directory has been copied.');
   });
+  this.bulkDirectory('spec', 'spec', function () {
+    console.log('spec directory has been copied.');
+  }.bind(this));
+
+  this.template('spec-index.js', 'spec/index.js');
 };
 
 BeezGenerator.prototype.projectfiles = function projectfiles() {
@@ -143,7 +150,7 @@ BeezGenerator.prototype.projectfiles = function projectfiles() {
   if (this.props.license === 'MIT') {
     this.copy('LICENSE');
   }
-  this.copy('Gruntfile.js');
+  this.template('Gruntfile.js');
   this.template('_package.json', 'package.json');
   this.template('setver');
 };
