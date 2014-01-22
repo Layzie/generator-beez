@@ -123,17 +123,18 @@ BeezGenerator.prototype.askFor = function askFor() {
 };
 
 BeezGenerator.prototype.app = function app() {
-  this.mkdir('deps');
-  this.mkdir('vender');
-  this.mkdir('spec');
-  this.mkdir('deps');
   this.mkdir('s');
   this.mkdir('s/' + this.slugname);
   this.mkdir('s/' + this.slugname + '/model');
   this.mkdir('s/' + this.slugname + '/view');
+
   this.template('s/project/index.js', 's/' + this.slugname + '/index.js');
   this.template('s/project/model/index.js', 's/' + this.slugname + '/model/index.js');
   this.template('s/project/view/index.js', 's/' + this.slugname + '/view/index.js');
+
+  this.bulkDirectory('deps', 'deps', function () {
+    console.log('beez has been copied.');
+  });
 };
 
 BeezGenerator.prototype.projectfiles = function projectfiles() {
