@@ -141,6 +141,7 @@ BeezGenerator.prototype.app = function app() {
     console.log('spec directory has been copied.');
   }.bind(this));
 
+  this.template('require-config.js', 'spec/require-config.js');
   this.template('spec-index.js', 'spec/index.js');
 };
 
