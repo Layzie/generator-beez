@@ -6,14 +6,14 @@
         'baseUrl': '/m/<%= slugname %>/s',
         'urlArgs': 'v=' + (new Date()).getTime(),
         'paths': {
-            'mocha': '/m/beez-tab/node_modules/mocha/mocha',
-            'chai': '/m/beez-tab/node_modules/chai/chai',
-            'backbone': '/m/beez-tab/deps/beez/vendor/backbone',
-            'underscore': '/m/beez-tab/deps/beez/vendor/underscore',
-            'zepto': '/m/beez-tab/deps/beez/vendor/zepto',
-            'handlebars': '/m/beez-tab/deps/beez/vendor/handlebars.runtime',
-            'beez': '/m/beez-tab/deps/beez/release/beez',
-            'index': '/m/beez-tab/s/<%= slugname %>/index',
+            'mocha': '/m/<%= slugname %>/node_modules/mocha/mocha',
+            'chai': '/m/<%= slugname %>/node_modules/chai/chai',
+            'backbone': '/m/<%= slugname %>/deps/beez/vendor/backbone',
+            'underscore': '/m/<%= slugname %>/deps/beez/vendor/underscore',
+            'zepto': '/m/<%= slugname %>/deps/beez/vendor/zepto',
+            'handlebars': '/m/<%= slugname %>/deps/beez/vendor/handlebars.runtime',
+            'beez': '/m/<%= slugname %>/deps/beez/release/beez',
+            'index': '/m/<%= slugname %>/s/<%= slugname %>/index',
             'spec': '/m/<%= slugname %>/spec'
         },
         'shim': {

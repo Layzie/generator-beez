@@ -146,8 +146,10 @@ BeezGenerator.prototype.app = function app() {
   this.bulkDirectory('deps', 'deps');
   this.bulkDirectory('spec', 'spec');
 
-  this.template('require-config.js', 'spec/require-config.js');
+  this.template('spec-require-config.js', 'spec/require-config.js');
   this.template('spec-index.js', 'spec/index.js');
+  this.template('spec-all.html', 'spec/all.html');
+  this.template('build.js');
 };
 
 BeezGenerator.prototype.projectfiles = function projectfiles() {

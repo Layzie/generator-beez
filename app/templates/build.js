@@ -31,14 +31,13 @@
 
     modules: [
         {
-            name: "beez.tab",
+            name: "<%= slugname %>",
             exclude: [
                 "zepto",
                 "backbone",
                 "underscore",
                 "handlebars",
-                "beez",
-                "beez.touch"
+                "beez"
             ]
         }
     ]

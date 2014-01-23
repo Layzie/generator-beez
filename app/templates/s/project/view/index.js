@@ -14,7 +14,7 @@
         /**
          * @class
          */
-        var View = View.extend(
+        var View = beez.View.extend(
             '<%= methodName %>.view',
             {
                 vidx: '<%= methodName %>',

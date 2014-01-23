@@ -23,11 +23,14 @@ describe('beez generator', function () {
   });
 
   it('creates expected files', function (done) {
+    this.timeout(5000);
+
     var expected = [
       // add files you expect to exist here.
       '.jshintrc',
       '.jshintignore',
       'Gruntfile.js',
+      'build.js',
       'package.json',
       'setver',
       'LICENSE',
