@@ -1,6 +1,6 @@
 {
   "name": "generator-beez",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A beez project generator for Yeoman",
   "keywords": [
     "yeoman-generator",
